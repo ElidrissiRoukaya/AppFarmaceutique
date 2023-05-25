@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+  
+    <link rel="stylesheet" href={{ asset('./css1/bootstrap.min.css' ) }} >
+    
+
+{% endblock %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 text-primary">Messages</h1>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ contact.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nom</th>
+                            <td>{{ contact.nom }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                            <td>{{ contact.email }}</td>
+                        </tr>
+                         <tr>
+                            <th>pays</th>
+                            <td>{{ contact.pays }}</td>
+                        </tr>
+                        <tr>
+                            <th>Message</th>
+                            <td>{{ contact.message }}</td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+
+                <div class="text-center">
+                    <a href="{{ path('app_contact_index') }}" class="btn btn-secondary mr-2">Back to list</a>
+                  {{ include('contact/_delete_form.html.twig') }}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

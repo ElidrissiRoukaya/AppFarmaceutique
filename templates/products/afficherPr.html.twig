@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+  
+    <link rel="stylesheet" href={{ asset('./css1/bootstrap.min.css' ) }} >
+  
+{% endblock %}
+
+{% block body %}
+<div class='container'>
+<br>
+    <a href="{{ path('medicament') }}"  class="btn btn-success">
+        Go Back
+    </a>
+    
+    <div class="row">
+        <div class="col-md-6">
+        <br><br>
+          <img  src={{product.image }} alt={{ product.title }} width="250" height="250">
+           
+        </div>
+       
+        <div class="col-md-5">
+            <br><br><br>
+            <ul class="list-group">
+            <li class="list-group-item">
+                    <div class="row">
+                        <h3 class="text-success">{{ product.title }}</h3>
+            <p >Description: <br>{{ product.description }}</p>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-md-5" >Prix:</div>
+                        <div class="col-md-5"><strong>{{ product.prix }} $</strong></div>
+                    </div>
+                </li>
+               
+            </ul>
+            <div class="col-md-5">
+            <br>
+           
+            <button class="btn btn-lg btn btn-success" type="button" >commander</button>
+            
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

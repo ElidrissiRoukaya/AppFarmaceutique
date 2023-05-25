@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+{% endblock %}
+
+{% block body %}
+     <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="{{ path('app_products_index') }}">Admin Dashboard</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="{{ path('app_products_index') }}"><i class="fa fa-tachometer"></i> Dashboard <span class="sr-only">(current)</span></a></li>
+          <li><a href="#"><i class="fa fa-cog fa-spin"></i> Settings</a></li>
+  <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+  <li><a href="#"><i class="fa fa-question-circle"></i> Help</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><i class="fa fa-user-plus"></i> Add Users</a></li>
+          <li><a href="#"><i class="fa fa-files-o"></i> Add Categories</a></li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  <br>
+      <div class="container-fluid">
+  <div class="row">
+<div class="col-sm-3 col-md-2">
+
+<ul class="nav nav-sidebar">
+  
+  
+  <li><a href="#">Users</a></li>
+  <li><a href="{{ path('app_contact_index') }}">Messages</a></li>
+</ul>
+<ul class="nav nav-sidebar">
+  <li><a href="{{ path('app_complements_index') }}">Compléments alimentaires</a></li>
+  <li><a href="{{ path('app_beauty_index') }}">Beauté et soins</a></li>
+  <li><a href="{{ path('app_products_index') }}">Médicaments</a></li>
+  
+  <li><a href="{{ path('acceuil') }}">logout</a></li>
+</ul>
+</div>
+<br>
+    <div class="col-sm-9 col-md-10">
+    <div class="row">
+    <div class="col-md-20">
+      <h1 class="page-header"><i class="fa fa-tachometer"></i> Admin dashboard</h1>
+      <h2 class="page-header"> Compléments alimentaires</h1>
+    </div>
+</div>
+<br>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Prix</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for complement in complements %}
+            <tr>
+                <td>{{ complement.id }}</td>
+                <td>{{ complement.title }}</td>
+                <td class="col-md-6">{{ complement.description }}</td>
+                <td>
+    
+        <img  src={{complement.image }} alt={{ complement.title }} width="50" height="50">
+   
+</td>
+
+                <td>{{ complement.prix }} $</td>
+                <td >
+                    <a href="{{ path('app_complements_show', {'id': complement.id}) }} "class="btn btn-primary">show</a>
+                    <a href="{{ path('app_complements_edit', {'id': complement.id}) }}"class="btn btn-warning">edit</a>
+                    {{ include('complements/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_complements_new') }}" class="btn btn-success">Ajouter</a>
+    
+{% endblock %}

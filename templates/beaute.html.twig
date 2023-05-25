@@ -1,0 +1,223 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+  
+    <link rel="stylesheet" href={{ asset('./css1/bootstrap.min.css' ) }} >
+    <link rel="stylesheet" href={{ asset('./css/style.css' ) }}>
+     <link rel="stylesheet" href={{ asset("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css") }}>
+
+    
+<link rel="stylesheet" href={{ asset('./css/fontawesome' ) }}>
+
+{% endblock %}
+
+{% block body %}
+
+    <div >
+    <!-- -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+  
+    <a class="navbar-brand" href="#"> <img src={{ asset('./images/para.jpg' ) }} alt="Logo" class="logo" > ParaApp</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#" > <i class="fa fa-home me-3"></i>Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="{{ path('app_contact_new') }}" > <i class="fa fa-envelope me-3"></i>contact</a>
+        </li>
+        <a class="nav-link" href="{{ path('app_products_index') }}" > <i class="fa fa-user"></i>  Admin</a>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+<br>
+<!-- -->
+    
+        <div class="row d-flex justify-content-center">
+  <div class="col-md-6">
+    <div class="container-fluid">
+      <ul class="nav nav-pills nav-fill gap-2 p-1 small bg-primary rounded-5 shadow-sm" id="pillNav2" role="tablist" style="--bs-nav-link-color: var(--bs-white); --bs-nav-pills-link-active-color: var(--bs-primary); --bs-nav-pills-link-active-bg: var(--bs-white);">
+        <li class="nav-item" role="presentation">
+                  <a class="nav-link active rounded-5" id="home-tab2" data-bs-toggle="tab" href="{{ path('acceuil') }}"> Compléments alimentaires</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <form method="get" action="{{ path('page_beauty') }}">
+            <button class="nav-link rounded-5" id="profile-tab2" data-bs-toggle="tab" type="submit" role="tab" aria-selected="false">Beauté et soins</button>
+          </form>
+        </li>
+        <li class="nav-item" role="presentation">
+          <form method="get" action="{{ path('medicament') }}">
+            <button class="nav-link rounded-5" id="contact-tab2" data-bs-toggle="tab" type="submit" role="tab" aria-selected="false">Médicaments</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+         <br>
+         <!--  card -->
+
+<div class="row d-flex flex-row">
+ {% for beauty in beauties %}
+  <div class="col-md-3">
+ 
+    <div class="card">
+     <h5 class="card-header">{{ beauty.title }}</h5>
+       <img  src={{beauty.image }} alt={{ beauty.title }} width='200px' height='200px'>
+      <div class="card-body">
+       <p class="card-text">{{ beauty.description }}</p>
+        <div class="row">
+                        <div class="col-md-5 text-primary" >Prix:</div>
+                         <h5 class="card-title">{{ beauty.prix}} $ </h5>
+                    </div>
+      </div>
+     
+      
+                     <div class="card-body">
+        <a href="{{ path('app_bt_details', {'id': beauty.id}) }} " class="btn btn-primary">View Product</a>
+      </div>
+     
+    </div>
+    
+  </div>
+ {% endfor %}
+
+      
+
+
+       <!-- Footer -->
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-white text-muted">
+  <!-- Section: Social media -->
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    <!-- Left -->
+    <div class="me-5 d-none d-lg-block">
+      <span>Get connected with us on social networks:</span>
+    </div>
+    <!-- Left -->
+
+    <!-- Right -->
+    <div>
+      <img src={{ asset('./images/twitter.png' ) }} width='20px' height='20px'>
+      <img src={{ asset('./images/fb.png' ) }} width='20px' height='20px'>
+      <img src={{ asset('./images/insta.png' ) }} width='20px' height='20px'>
+      <img src={{ asset('./images/linkdin.png' ) }} width='20px' height='20px'>
+      <img src={{ asset('./images/github.png' ) }} width='20px' height='20px'>
+    
+      </a>
+    </div>
+    <!-- Right -->
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3 text-secondary"></i>ParaApp
+          </h6>
+          <p>
+            Boutique en ligne mapara.ma mapara para parapharmacie maroc meuilleur prix meuilleure para marocaine.
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Products
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Medicaments</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Compléments alimentaires</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Beauté et soins</a>
+          </p>
+         
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Pricing</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Settings</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Orders</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Help</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fa fa-home me-3 text-secondary"></i> Fes , Morocco</p>
+          <p>
+            <i class="fa fa-envelope me-3 text-secondary"></i>
+            ParaApp@gmail.com
+          </p>
+          <p><i class="fa fa-phone me-3 text-secondary"></i> + 01 234 567 88</p>
+          <p><i class="fa fa-print me-3 text-secondary"></i> + 01 234 567 89</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+    © 2023 Copyright:
+    <a class="text-reset fw-bold" href="">ParaApp.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+<!-- Footer -->
+
+        
+  
+
+
+
+        </div>
+        
+ 
+    
+{% endblock %}
+
+

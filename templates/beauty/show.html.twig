@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock %}
+{% block title %}Products{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            <br>
+                <h1 class="text-center mb-5 text-primary">Products</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <td>{{ beauty.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Title</th>
+                            <td>{{beauty.title }}</td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td>{{beauty.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Image</th>
+                            <td>
+        <img  src={{beauty.image }} alt={{ beauty.title }} width="50" height="50"></td>
+                        </tr>
+                        <tr>
+                            <th>Prix</th>
+                            <td>{{ beauty.prix }} $</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <div class="text-center">
+                    <a href="{{ path('app_beauty_index') }}" class="btn btn-primary">back to list</a>
+                    <a href="{{ path('app_beauty_edit', {'id': beauty.id}) }}" class="btn btn-secondary">edit</a>
+                    {{ include('beauty/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
